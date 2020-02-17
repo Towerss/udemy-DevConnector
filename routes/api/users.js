@@ -56,8 +56,6 @@ router.post('/', [
             avatar,
             password
         });
-        
-        console.log(user);
 
         //Encrypt password
         try {
