@@ -6,6 +6,10 @@ const app = express();
 //Connect to database
 connectDB();
 
+//Initialize middlware
+app.use(express.json({ extended: false }));
+
+//Route response for home page or root directory
 app.get('/', (req, res) => {
     res.send('API running');
 });
