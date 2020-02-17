@@ -86,7 +86,7 @@ router.post('/', [
         };
 
         //Sign the token and send it to the user
-        jwt.sign(payload, config.get('jtwSecret'), { expiresIn: 36000 }, (err, token) => {  //3600 for production
+        jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 36000 }, (err, token) => {  //3600 for production
             if(err){
                 throw err;
             }
