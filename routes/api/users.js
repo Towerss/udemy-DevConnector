@@ -66,7 +66,6 @@ router.post('/', [
             res.status(400).json( { errors: [{msg: error.message}]} );
         }
 
-
         //Save user to database
         try {
             await user.save();
@@ -75,7 +74,6 @@ router.post('/', [
             res.status(400).json( { errors: [{msg: error.message}]} );
         }
         
-
         //Return jsonwebtoken
         const payload = {
             user:{
