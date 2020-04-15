@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 
 // ({ setAlert }) is the destructuring of (props)
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
 
   // Use React hooks useState to handle state. Pass the initial state and the function to update it
   const [formData, setFormData] = useState({
@@ -31,6 +31,13 @@ const Register = ({ setAlert, register }) => {
 
     }
   };
+
+    /**
+   * If user authenticated then redirect
+   */
+  if(isAuthenticated){
+    return <Redirect to='/dashboard'/>
+  }
 
   return (
     <Fragment>
@@ -82,7 +89,11 @@ Register.propTypes = {
   // isAuthenticated: PropTypes.bool
 };
 
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
 // Use of connect to connect this Component to the store.
 // connect(state, {actions object})
 // This allows to access props.action => props.setAlert
-export default connect(null, { setAlert, register })(Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);

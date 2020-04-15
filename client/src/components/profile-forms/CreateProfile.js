@@ -8,7 +8,7 @@ const CreateProfile = ({
 	createProfile,
 	getCurrentProfile,
 	profile: { profile, loading },
-	history
+	history		//	History here is destructured from the props, and used in conjunction with "withRouter" to redirect from an action
 }) => {
 	const [formData, setFormData] = useState({
 		company: '',
@@ -233,6 +233,12 @@ CreateProfile.propTypes = {
 const mapStateToProps = state => ({
 	profile: state.profile
 });
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
-	withRouter(CreateProfile)
-);
+
+const mapDispatchToProps = {
+	createProfile, 
+	getCurrentProfile
+};
+
+//	In this case we surround the component "Create profile" with withRouter(), so we can use the "history"
+//	inside an action to redirect to another page.
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CreateProfile));

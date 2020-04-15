@@ -123,7 +123,12 @@ AddExperience.propTypes = {
   addExperience: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  { addExperience }
-)(withRouter(AddExperience));
+const mapStateToProps = (state) => ({
+
+});
+
+const mapDispatchToProps = {
+  addExperience
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )(withRouter(AddExperience));

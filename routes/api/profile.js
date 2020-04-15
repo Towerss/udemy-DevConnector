@@ -35,7 +35,7 @@ router.get('/mine', auth, async (req, res) => {
 @desc   Create or update a user's profile
 @access Private
 */
-router.post('/', [auth, [
+router.post('/mine', [auth, [
     check('status', 'Status is required')
         .not()
         .notEmpty(),
@@ -76,7 +76,7 @@ router.post('/', [auth, [
       if (status) profileFields.status = status;
       if (githubusername) profileFields.githubusername = githubusername;
       if (skills) {
-        profileFields.skills = skills.split(',').map(skill => skill.trim());
+        profileFields.skills = skills.toString().split(',').map(skill => skill.trim());
       }
 
       // Build social object

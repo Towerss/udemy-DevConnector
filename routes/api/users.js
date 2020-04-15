@@ -53,14 +53,13 @@ router.post('/', [
         const user = new User({
             name,
             email,
-            avatar,
-            password
+            avatar
         });
 
         //Encrypt password
         try {
-            const salt = await bcrypt.genSalt(10);
-            user.password = await bcrypt.hash(password, salt);
+            const salt = await bcrypt.genSalt(12);
+            user.hashPassword = await bcrypt.hash(password, salt);
         } catch (error) {
             console.trace('Encrypt password');
             res.status(400).json( { errors: [{msg: error.message}]} );

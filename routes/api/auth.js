@@ -51,38 +51,47 @@ router.post('/', [
     try {
 
         //Check if the user exists
-        let existingUser = undefined;
+        let existingUser = null;
         try {
             existingUser = await User.findOne({ email: email });
             if(!existingUser){
                 return res.status(400).json( { errors: [{msg: 'Invalid credentials'}] } );  //This json is to match the data valiation messages
             }
+
+            let isMatch = null;
+            try {
+                isMatch = await bcrypt.compare(password, existingUser.hashPassword);
+
+                if(!isMatch){
+                    console.log('Invalid credentials password');
+                    return res.status(400).json( { errors: [{msg: 'Invalid credentials password'}] } );  //This json is to match the data valiation messages
+                }
+    
+                //Return jsonwebtoken
+                const payload = {
+                    user:{
+                        id: existingUser.id
+                    }
+                };
+    
+                //Sign the token and send it to the user
+                jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 3600 }, (err, token) => {  //3600 for production
+                    if(err){
+                        throw err;
+                    }
+                    res.status(200).json({ token: token });
+                }); 
+
+            } catch (error) {
+                console.log(error.message);
+                return res.status(400).json( { errors: [{msg: error.message}]} )
+            }
+
         } catch (error) {
-            console.trace('Check if the user exists');
+            console.trace('Check if the user exists error');
             console.log(error.message);
             return res.status(400).json( { errors: [{msg: error.message}]} )
-        }        
-
-        const isMatch = await bcrypt.compare(password, existingUser.password);
-
-        if(!isMatch){
-            return res.status(400).json( { errors: [{msg: 'Invalid credentials password'}] } );  //This json is to match the data valiation messages
         }
-
-        //Return jsonwebtoken
-        const payload = {
-            user:{
-                id: existingUser.id
-            }
-        };
-
-        //Sign the token and send it to the user
-        jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 36000 }, (err, token) => {  //3600 for production
-            if(err){
-                throw err;
-            }
-            res.status(200).json({ token: token });
-        }); 
 
     } catch (error) {
         console.trace('Authenticate user and get token Error');
