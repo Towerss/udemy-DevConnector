@@ -49,7 +49,8 @@ import {
           ...state,
           token: null,
           isAuthenticated: false,
-          loading: false
+          loading: false,
+          user: null
         };
       case LOGOUT:
         localStorage.removeItem('token');

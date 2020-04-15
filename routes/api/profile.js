@@ -8,6 +8,8 @@ const { check, validationResult } = require('express-validator');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Post');
+
 
 /*
 @route  GET api/profile/mine
@@ -161,7 +163,7 @@ router.get('/user/:user_id', async (req, res) => {
 });
 
 // @route    DELETE api/profile
-// @desc     Delete profile, user & posts
+// @desc     Delete profile, user account & posts
 // @access   Private
 router.delete('/', auth, async (req, res) => {
     try {

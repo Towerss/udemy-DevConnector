@@ -52,7 +52,12 @@ Education.propTypes = {
   deleteEducation: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  { deleteEducation }
-)(Education);
+const mapStateToProps = (state) => ({
+
+});
+
+const mapDispatchToProps = {
+  deleteEducation
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Education);

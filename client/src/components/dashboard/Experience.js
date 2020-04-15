@@ -52,7 +52,12 @@ Experience.propTypes = {
   deleteExperience: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  { deleteExperience }
-)(Experience);
+const mapStateToProps = (state) => ({
+
+});
+
+const mapDispatchToProps = {
+  deleteExperience
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Experience);

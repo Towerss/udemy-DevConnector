@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
-// import Experience from './Experience'; 30 <Experience experience={profile.experience} />
-// import Education from './Education'; 31 <Education education={profile.education}/>
-import { getCurrentProfile, /*deleteAccount*/ } from '../../actions/profile';
+import Experience from './Experience';
+import Education from './Education';
+import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 
 
 //  Component main function
-const Dashboard = ({ getCurrentProfile, /*deleteAccount,*/ auth: { user }, profile: { profile, loading }}) => {
+const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: { profile, loading }}) => {
 
   useEffect(() => {
     getCurrentProfile();
@@ -27,11 +27,11 @@ const Dashboard = ({ getCurrentProfile, /*deleteAccount,*/ auth: { user }, profi
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
-          
-          
+          <Experience experience={profile.experience} />
+          <Education education={profile.education}/>
 
           <div className='my-2'>
-            <button className='btn btn-danger' onClick={() => {}/*deleteAccount()*/}>
+            <button className='btn btn-danger' onClick={() => deleteAccount()}>
               <i className='fas fa-user-minus' /> Delete My Account
             </button>
           </div>
@@ -50,7 +50,7 @@ const Dashboard = ({ getCurrentProfile, /*deleteAccount,*/ auth: { user }, profi
 
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
-  // deleteAccount: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -62,7 +62,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getCurrentProfile, 
-  // deleteAccount
+  deleteAccount
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
