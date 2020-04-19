@@ -5,6 +5,8 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { addLike, removeLike, deletePost } from '../../actions/post';
 
+
+//  Component main function
 const PostItem = ({
   addLike,
   removeLike,
@@ -81,7 +83,10 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { addLike, removeLike, deletePost }
-)(PostItem);
+const mapDispatchToProps = {
+  addLike, 
+  removeLike, 
+  deletePost
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(PostItem);

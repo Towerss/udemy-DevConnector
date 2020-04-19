@@ -6,11 +6,15 @@ import PostItem from './PostItem';
 import PostForm from './PostForm';
 import { getPosts } from '../../actions/post';
 
+
+//  Component main function
 const Posts = ({ getPosts, post: { posts, loading } }) => {
+
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
+  
   return loading ? (
     <Spinner />
   ) : (
@@ -38,7 +42,8 @@ const mapStateToProps = state => ({
   post: state.post
 });
 
-export default connect(
-  mapStateToProps,
-  { getPosts }
-)(Posts);
+const mapDispatchToProps = {
+  getPosts
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )(Posts);
