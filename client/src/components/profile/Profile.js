@@ -2,6 +2,8 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+//  custom imports
 import Spinner from '../layout/Spinner';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
@@ -10,12 +12,15 @@ import ProfileEducation from './ProfileEducation';
 import ProfileGithub from './ProfileGithub';
 import { getProfileById } from '../../actions/profile';
 
+
+//  Component main function
 const Profile = ({
   getProfileById,
   profile: { profile, loading },
   auth,
   match
 }) => {
+
   useEffect(() => {
     getProfileById(match.params.id);
   }, [getProfileById, match.params.id]);
@@ -92,7 +97,8 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { getProfileById }
-)(Profile);
+const mapDispatchToProps = {
+  getProfileById
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )(Profile);

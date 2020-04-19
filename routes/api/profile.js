@@ -38,12 +38,8 @@ router.get('/mine', auth, async (req, res) => {
 @access Private
 */
 router.post('/mine', [auth, [
-    check('status', 'Status is required')
-        .not()
-        .notEmpty(),
-    check('skills', 'Skills is required')
-        .not()
-        .notEmpty()
+    check('status', 'Status is required').not().notEmpty(),
+    check('skills', 'Skills is required').not().notEmpty()
 ]], async (req, res) =>{
 
     // Data validation
@@ -344,7 +340,8 @@ router.get('/github/:username', (req, res) => {
   try {
     const options = {
       uri: encodeURI(
-        `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`
+        // `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`    //  commented for development
+        `https://api.github.com/users/Towerss/repos?per_page=5&sort=created:asc`
       ),
       method: 'GET',
       headers: {
