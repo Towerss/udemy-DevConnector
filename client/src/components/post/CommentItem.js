@@ -43,11 +43,12 @@ CommentItem.propTypes = {
   deleteComment: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { deleteComment }
-)(CommentItem);
+const mapDispatchToProps ={
+  deleteComment
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(CommentItem);

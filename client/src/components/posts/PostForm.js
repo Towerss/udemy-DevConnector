@@ -38,7 +38,12 @@ PostForm.propTypes = {
   addPost: PropTypes.func.isRequired
 };
 
-export default connect(
-  null,
-  { addPost }
-)(PostForm);
+const mapStateToProps = (state) => ({
+
+});
+
+const mapDispatchToProps = {
+  addPost
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(PostForm);

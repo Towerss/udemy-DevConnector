@@ -79,7 +79,7 @@ PostItem.propTypes = {
   showActions: PropTypes.bool
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
