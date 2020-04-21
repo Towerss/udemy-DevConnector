@@ -30,9 +30,8 @@ export const loadUser = () => async (dispatch) => {
       });
     }
   } else{
-    console.log('No token found in local storage at loadUser')
+    // console.log('No token found in local storage at loadUser')
   }
-
 
 };
 
