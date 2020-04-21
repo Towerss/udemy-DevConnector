@@ -1,5 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://username:Password@cluster0-sxtme.gcp.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret": "TacticalRacerSecretForJWTToken",
-    "githubToken": "fa930116c1f3a46c07ddb17a0ad0ee1cfb0a4d7f"
-}
