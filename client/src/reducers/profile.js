@@ -54,7 +54,7 @@ export default function(state = initialState, action){
                 profile: null,
                 profiles: [],
                 repos: [],
-                loading: false,
+                loading: true,
             }
         case GET_REPOS:
             return {
