@@ -3,8 +3,8 @@
 DevConnector
 
 At AWS
-http://54.144.39.187/profiles
+http://54.165.237.116/
 
 At Heroku
-https://devconnector-udemy.herokuapp.com/profiles
+https://devconnector-udemy.herokuapp.com/
 

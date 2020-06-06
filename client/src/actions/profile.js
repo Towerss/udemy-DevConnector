@@ -40,6 +40,8 @@ export const getProfiles = () => async (dispatch) => {
         
         let response = await axios.get('/api/profile');
 
+        console.log(response.data)
+
         dispatch({
             type: GET_PROFILES,
             payload: response.data
